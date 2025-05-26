@@ -4,7 +4,7 @@ using System;
 public class demo // not PascalCase
 {
     // TODO: Refactor this method before merging
-    public void printmessage1() // not PascalCase
+    public void printmessage() // not PascalCase
     {
         string Message = null; // not camelCase
         string unusedVariable = "This variable is not used"; // Unused variable
