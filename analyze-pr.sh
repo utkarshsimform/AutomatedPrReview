@@ -24,7 +24,7 @@ echo "Generating diff between $BASE_BRANCH and $HEAD_BRANCH..."
 git diff "$BASE_BRANCH".."$HEAD_BRANCH" > pr-diff.txt
 
 echo "Loaded PR Review Instructions:"
-cat pr-review-instructions.md
+cat AutomatedPRReview/pr-review-instructions.md
 
 echo "\n--- Simulated PR Analysis ---"
 # Example: Check for TODOs in the diff (as a placeholder for real checks)
