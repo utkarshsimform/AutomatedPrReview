@@ -23,7 +23,8 @@ git checkout "$HEAD_BRANCH"
 echo "Generating diff between $BASE_BRANCH and $HEAD_BRANCH..."
 git diff "$BASE_BRANCH".."$HEAD_BRANCH" > pr-diff.txt
 
-echo "--- Automated PR Analysis ---" > pr-comment.txt
+echo "This review was performed according to the guidelines in pr-review-instructions.md." > pr-comment.txt
+echo "--- Automated PR Analysis ---" >> pr-comment.txt
 
 # Get list of changed .cs files, excluding obj/ and bin/
 CHANGED_CS_FILES=$(git diff --name-only "$BASE_BRANCH".."$HEAD_BRANCH" | grep '\.cs$' | grep -vE '^(obj|bin)/' || true)
