@@ -23,15 +23,14 @@ git checkout "$HEAD_BRANCH"
 echo "Generating diff between $BASE_BRANCH and $HEAD_BRANCH..."
 git diff "$BASE_BRANCH".."$HEAD_BRANCH" > pr-diff.txt
 
-echo "Loaded PR Review Instructions:"
-cat AutomatedPRReview/pr-review-instructions.md
+echo "Loaded PR Review Instructions:" > pr-comment.txt
+cat AutomatedPRReview/pr-review-instructions.md >> pr-comment.txt
 
-echo "\n--- Simulated PR Analysis ---"
-# Example: Check for TODOs in the diff (as a placeholder for real checks)
+echo -e "\n--- Simulated PR Analysis ---" >> pr-comment.txt
 if grep -q 'TODO' pr-diff.txt; then
-  echo "[WARNING] Found TODO comments in the changes."
+  echo "[WARNING] Found TODO comments in the changes." >> pr-comment.txt
 else
-  echo "No TODO comments found in the changes."
+  echo "No TODO comments found in the changes." >> pr-comment.txt
 fi
 
-echo "\n(Extend this script to parse pr-review-instructions.md and automate more checks.)"
+echo -e "\n(Extend this script to parse pr-review-instructions.md and automate more checks.)" >> pr-comment.txt

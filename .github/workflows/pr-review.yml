@@ -16,3 +16,13 @@ jobs:
           dotnet-version: '9.0.x'
       - name: Run PR analysis script
         run: bash ./analyze-pr.sh ${{ github.event.pull_request.base.ref }} ${{ github.event.pull_request.head.ref }}
+      - name: Upload PR comment artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-comment
+          path: pr-comment.txt
+      - name: Create PR comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body-file: pr-comment.txt
