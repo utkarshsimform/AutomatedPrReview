@@ -100,3 +100,7 @@ echo "Reviewing **$file**:" >> pr-comment.txt
 done
 
 echo -e "\n(Extend this script to parse pr-review-instructions.md and automate more checks.)" >> pr-comment.txt
+
+# Optional: Use Copilot CLI (if available in future)
+# echo "Running GitHub Copilot Agent..." >> $REVIEW_OUTPUT_FILE
+# copilot-agent review-pr --pr-url "https://github.com/$REPO_NAME/pull/$PR_NUMBER" --instructions-file "$INSTRUCTIONS_FILE" >> "$REVIEW_OUTPUT_FILE"
