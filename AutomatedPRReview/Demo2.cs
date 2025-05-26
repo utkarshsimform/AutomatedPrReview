@@ -3,7 +3,7 @@ using System;
 /// <summary>
 /// Another well-formed demo class for PR review.
 /// </summary>
-public class demo2
+public class Demo2
 {
     /// <summary>
     /// Returns the sum of two integers.

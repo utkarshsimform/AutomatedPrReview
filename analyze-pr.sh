@@ -34,17 +34,17 @@ for file in $CHANGED_CS_FILES; do
 
   # 1. Code Quality: Naming conventions (PascalCase for class, method, property; camelCase for local vars)
   # Class name check
-  CLASS_NAMES=$(grep -Po 'class \K[^\s{]+' "$file" | grep -P '^[a-z]')
+  CLASS_NAMES=$(grep -Po 'class \K[^\s{]+' "$file" | grep -P '^[a-z]' || true)
   for cname in $CLASS_NAMES; do
     echo "[WARNING] Class name not in PascalCase: $cname" >> pr-comment.txt
   done
   # Method name check
-  METHOD_NAMES=$(grep -Po 'void \K[^\s(]+' "$file" | grep -P '^[a-z]')
+  METHOD_NAMES=$(grep -Po 'void \K[^\s(]+' "$file" | grep -P '^[a-z]' || true)
   for mname in $METHOD_NAMES; do
     echo "[WARNING] Method name not in PascalCase: $mname" >> pr-comment.txt
   done
   # Local variable name check
-  VAR_NAMES=$(grep -Po 'string \K[^\s=;]+' "$file" | grep -P '^[A-Z]')
+  VAR_NAMES=$(grep -Po 'string \K[^\s=;]+' "$file" | grep -P '^[A-Z]' || true)
   for vname in $VAR_NAMES; do
     echo "[WARNING] Local variable name not in camelCase: $vname" >> pr-comment.txt
   done
