@@ -32,15 +32,21 @@ for file in $CHANGED_CS_FILES; do
   echo "\nReviewing $file:" >> pr-comment.txt
 
   # 1. Code Quality: Naming conventions (PascalCase for class, method, property; camelCase for local vars)
-  if grep -P 'class [^A-Z]' "$file" > /dev/null; then
-    echo "[WARNING] Class name not in PascalCase." >> pr-comment.txt
-  fi
-  if grep -P 'void [^A-Z]' "$file" > /dev/null; then
-    echo "[WARNING] Method name not in PascalCase." >> pr-comment.txt
-  fi
-  if grep -P 'string [A-Z]' "$file" > /dev/null; then
-    echo "[WARNING] Local variable name not in camelCase." >> pr-comment.txt
-  fi
+  # Class name check
+  CLASS_NAMES=$(grep -Po 'class \K[^\s{]+' "$file" | grep -P '^[a-z]')
+  for cname in $CLASS_NAMES; do
+    echo "[WARNING] Class name not in PascalCase: $cname" >> pr-comment.txt
+  done
+  # Method name check
+  METHOD_NAMES=$(grep -Po 'void \K[^\s(]+' "$file" | grep -P '^[a-z]')
+  for mname in $METHOD_NAMES; do
+    echo "[WARNING] Method name not in PascalCase: $mname" >> pr-comment.txt
+  done
+  # Local variable name check
+  VAR_NAMES=$(grep -Po 'string \K[^\s=;]+' "$file" | grep -P '^[A-Z]')
+  for vname in $VAR_NAMES; do
+    echo "[WARNING] Local variable name not in camelCase: $vname" >> pr-comment.txt
+  done
 
   # 2. Error Handling: Check for try-catch
   if ! grep -q 'try' "$file"; then
