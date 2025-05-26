@@ -30,7 +30,7 @@ echo "--- Automated PR Analysis ---" >> pr-comment.txt
 CHANGED_CS_FILES=$(git diff --name-only "$BASE_BRANCH".."$HEAD_BRANCH" | grep '\.cs$' | grep -vE '^(obj|bin)/' || true)
 
 for file in $CHANGED_CS_FILES; do
-  echo "Reviewing $file:" >> pr-comment.txt
+  echo "\nReviewing $file:" >> pr-comment.txt
 
   # 1. Code Quality: Naming conventions (PascalCase for class, method, property; camelCase for local vars)
   # Class name check
