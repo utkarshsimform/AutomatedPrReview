@@ -105,4 +105,4 @@ echo -e "\n(Extend this script to parse pr-review-instructions.md and automate m
 # echo "Running GitHub Copilot Agent..." >> $REVIEW_OUTPUT_FILE
 # copilot-agent review-pr --pr-url "https://github.com/$REPO_NAME/pull/$PR_NUMBER" --instructions-file "$INSTRUCTIONS_FILE" >> "$REVIEW_OUTPUT_FILE"
 
-INSTRUCTIONS=$(cat AutomatedPRReview/pr-review-instructions.md)
+# INSTRUCTIONS=$(cat AutomatedPRReview/pr-review-instructions.md)
