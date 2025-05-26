@@ -1,0 +1,15 @@
+C:\MyProjects\POC\AutomatedPRReview\AutomatedPRReview\bin\Debug\net9.0\AutomatedPRReview.exe
+C:\MyProjects\POC\AutomatedPRReview\AutomatedPRReview\bin\Debug\net9.0\AutomatedPRReview.deps.json
+C:\MyProjects\POC\AutomatedPRReview\AutomatedPRReview\bin\Debug\net9.0\AutomatedPRReview.runtimeconfig.json
+C:\MyProjects\POC\AutomatedPRReview\AutomatedPRReview\bin\Debug\net9.0\AutomatedPRReview.dll
+C:\MyProjects\POC\AutomatedPRReview\AutomatedPRReview\bin\Debug\net9.0\AutomatedPRReview.pdb
+C:\MyProjects\POC\AutomatedPRReview\AutomatedPRReview\obj\Debug\net9.0\AutomatedPRReview.GeneratedMSBuildEditorConfig.editorconfig
+C:\MyProjects\POC\AutomatedPRReview\AutomatedPRReview\obj\Debug\net9.0\AutomatedPRReview.AssemblyInfoInputs.cache
+C:\MyProjects\POC\AutomatedPRReview\AutomatedPRReview\obj\Debug\net9.0\AutomatedPRReview.AssemblyInfo.cs
+C:\MyProjects\POC\AutomatedPRReview\AutomatedPRReview\obj\Debug\net9.0\AutomatedPRReview.csproj.CoreCompileInputs.cache
+C:\MyProjects\POC\AutomatedPRReview\AutomatedPRReview\obj\Debug\net9.0\AutomatedPRReview.dll
+C:\MyProjects\POC\AutomatedPRReview\AutomatedPRReview\obj\Debug\net9.0\refint\AutomatedPRReview.dll
+C:\MyProjects\POC\AutomatedPRReview\AutomatedPRReview\obj\Debug\net9.0\AutomatedPRReview.pdb
+C:\MyProjects\POC\AutomatedPRReview\AutomatedPRReview\obj\Debug\net9.0\AutomatedPRReview.genruntimeconfig.cache
+C:\MyProjects\POC\AutomatedPRReview\AutomatedPRReview\obj\Debug\net9.0\ref\AutomatedPRReview.dll
+C:\MyProjects\POC\AutomatedPRReview\AutomatedPRReview\bin\Debug\net9.0\pr-review-instructions.md
