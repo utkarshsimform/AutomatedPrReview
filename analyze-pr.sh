@@ -124,6 +124,16 @@ for file in $CHANGED_CS_FILES; do
     echo "[WARNING] Extra blank lines detected." >> pr-comment.txt
   fi
 
+  # 8. Dependency Injection Anti-patterns
+  # Warn if direct instantiation of dependencies is found
+  if grep -E '= new [A-Z][A-Za-z0-9_]*\(' "$file" > /dev/null 2>&1; then
+    echo "[WARNING] Direct instantiation of dependency detected (use DI instead)." >> pr-comment.txt
+  fi
+  # Warn if private fields that look like dependencies are not readonly
+  if grep -E 'private [A-Z][A-Za-z0-9_]* [a-zA-Z0-9_]+;' "$file" | grep -v readonly > /dev/null 2>&1; then
+    echo "[WARNING] Private dependency field is not readonly (should be injected and readonly)." >> pr-comment.txt
+  fi
+
 done
 
 echo -e "\n(Extend this script to parse pr-review-instructions.md and automate more checks.)" >> pr-comment.txt
