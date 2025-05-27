@@ -12,7 +12,7 @@ public class Demo1
     {
         try
         {
-            string message4 = "Hello, World!";
+            string message = "Hello, World!";
             Console.WriteLine(message);
         }
         catch (Exception ex)
