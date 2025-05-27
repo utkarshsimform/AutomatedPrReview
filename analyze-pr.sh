@@ -34,7 +34,8 @@ for file in $CHANGED_CS_FILES; do
   echo "Reviewing **$file**:" >> pr-comment.txt
 
   # 1. Code Quality: Naming conventions, modularity, indentation, braces
-  CLASS_NAMES=$(grep -Po 'class \K[^\s{]+' "$file" | grep -P '^[a-z]' || true)
+  # Improved class name extraction: only match valid C# class declarations
+  CLASS_NAMES=$(grep -E '^\s*(public|internal|private|protected)?\s*class\s+[A-Za-z_][A-Za-z0-9_]*' "$file" | sed -E 's/^.*class\s+([A-Za-z_][A-Za-z0-9_]*).*/\1/' | grep -P '^[a-z]' || true)
   for cname in $CLASS_NAMES; do
     echo "[WARNING] Class name not in PascalCase: $cname" >> pr-comment.txt
   done

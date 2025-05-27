@@ -3,7 +3,7 @@ using System;
 /// <summary>
 /// A well-formed demo class for PR review.
 /// </summary>
-public class Demo1
+public class Demo2
 {
     /// <summary>
     /// Prints a message safely.
@@ -12,7 +12,7 @@ public class Demo1
     {
         try
         {
-            string message4 = "Hello, World!";
+            string message = "Hello, World!";
             Console.WriteLine(message);
         }
         catch (Exception ex)
