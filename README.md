@@ -61,7 +61,7 @@ This POC demonstrates an automated code review and quality assurance workflow fo
 - The `copilot-agent review-pr` CLI is not publicly available or generally released as of May 2025.
 - There is no official installation or usage method for this tool in open-source or standard enterprise environments.
 - Our workflow uses a Bash script to simulate automated review logic, but does not rely on unreleased or unsupported Copilot CLI tools.
-- See: https://docs.github.com/en/copilot/using-github-copilot/copilot-agent/copilot-agent-cli-reference
+- As of May 2025, there is no official public documentation or release for the copilot-agent CLI.
 
 ---
 
