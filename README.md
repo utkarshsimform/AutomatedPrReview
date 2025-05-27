@@ -49,6 +49,22 @@ This POC demonstrates an automated code review and quality assurance workflow fo
 - **Transparency:** Review comments reference the Markdown checklist, making expectations clear.
 - **Extensibility:** Easily add new checks to the script or update the checklist as standards evolve.
 
+## Limitations: Why Not GitHub Copilot Code Review or copilot-agent CLI?
+
+### Why Not GitHub Copilot Code Review?
+- As of May 2025, GitHub Copilot Code Review is a preview feature and is not generally available for all organizations or repositories.
+- It requires Copilot for Business/Enterprise and must be enabled by your organization.
+- Our current environment and licensing do not support enabling this feature, so we use a custom script-based approach instead.
+- See: https://docs.github.com/en/copilot/using-github-copilot/code-review/using-copilot-code-review
+
+### Why Not copilot-agent review-pr CLI?
+- The `copilot-agent review-pr` CLI is not publicly available or generally released as of May 2025.
+- There is no official installation or usage method for this tool in open-source or standard enterprise environments.
+- Our workflow uses a Bash script to simulate automated review logic, but does not rely on unreleased or unsupported Copilot CLI tools.
+- See: https://docs.github.com/en/copilot/using-github-copilot/copilot-agent/copilot-agent-cli-reference
+
+---
+
 ## Extending the POC
 - Add more advanced static analysis or integrate with tools like Super-Linter or SonarQube.
 - Support additional languages or frameworks by updating the script and checklist.
