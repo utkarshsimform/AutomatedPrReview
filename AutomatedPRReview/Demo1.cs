@@ -3,7 +3,7 @@ using System;
 /// <summary>
 /// A well-formed demo class for PR review.
 /// </summary>
-public class Demo2
+public class demo4
 {
     /// <summary>
     /// Prints a message safely.

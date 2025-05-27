@@ -75,9 +75,6 @@ for file in $CHANGED_CS_FILES; do
   if grep -q -i 'password\s*=\s*' "$file"; then
     echo "[WARNING] Possible hardcoded password detected." >> pr-comment.txt
   fi
-  if grep -q 'Console.WriteLine' "$file"; then
-    echo "[INFO] Review Console.WriteLine usage for sensitive data exposure." >> pr-comment.txt
-  fi
 
   # 4. Test Coverage
   TEST_FILE=$(echo "$file" | sed 's/\.cs$/Tests.cs/I')
