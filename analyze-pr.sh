@@ -2,26 +2,43 @@
 # analyze-pr.sh: Extensive PR analysis using pr-review-instructions.md
 # Usage: ./analyze-pr.sh <base-branch> <head-branch>
 
-set -e
+set -eEuo pipefail
+
+LOG_FILE="analyze-pr.log"
+
+log_error() {
+  echo "[ERROR] $1" | tee -a "$LOG_FILE"
+}
+
+log_info() {
+  echo "[INFO] $1" | tee -a "$LOG_FILE"
+}
+
+trap 'log_error "Script failed at line $LINENO. See $LOG_FILE for details."; exit 1' ERR
 
 BASE_BRANCH="$1"
 HEAD_BRANCH="$2"
 
-if [ -z "$BASE_BRANCH" ] || [ -z "$HEAD_BRANCH" ]; then
-  echo "Usage: $0 <base-branch> <head-branch>"
+if [ -z "${BASE_BRANCH:-}" ] || [ -z "${HEAD_BRANCH:-}" ]; then
+  log_error "Usage: $0 <base-branch> <head-branch>"
   exit 1
 fi
 
-echo "Checking out base branch: $BASE_BRANCH"
-git fetch origin "$BASE_BRANCH":"$BASE_BRANCH"
-git checkout "$BASE_BRANCH"
+log_info "Checking out base branch: $BASE_BRANCH"
+git fetch origin "$BASE_BRANCH":"$BASE_BRANCH" || { log_error "Failed to fetch base branch $BASE_BRANCH"; exit 1; }
+git checkout "$BASE_BRANCH" || { log_error "Failed to checkout base branch $BASE_BRANCH"; exit 1; }
 
-echo "Checking out head branch: $HEAD_BRANCH"
-git fetch origin "$HEAD_BRANCH":"$HEAD_BRANCH"
-git checkout "$HEAD_BRANCH"
+log_info "Checking out head branch: $HEAD_BRANCH"
+git fetch origin "$HEAD_BRANCH":"$HEAD_BRANCH" || { log_error "Failed to fetch head branch $HEAD_BRANCH"; exit 1; }
+git checkout "$HEAD_BRANCH" || { log_error "Failed to checkout head branch $HEAD_BRANCH"; exit 1; }
 
-echo "Generating diff between $BASE_BRANCH and $HEAD_BRANCH..."
-git diff "$BASE_BRANCH".."$HEAD_BRANCH" > pr-diff.txt
+log_info "Generating diff between $BASE_BRANCH and $HEAD_BRANCH..."
+git diff "$BASE_BRANCH".."$HEAD_BRANCH" > pr-diff.txt || { log_error "Failed to generate git diff"; exit 1; }
+
+if [ ! -s pr-diff.txt ]; then
+  log_info "No changes detected between $BASE_BRANCH and $HEAD_BRANCH. Exiting."
+  exit 0
+fi
 
 echo "This review was performed according to the guidelines in pr-review-instructions.md." > pr-comment.txt
 echo "--- Automated PR Analysis ---" >> pr-comment.txt
@@ -29,7 +46,17 @@ echo "--- Automated PR Analysis ---" >> pr-comment.txt
 # Get list of changed .cs files, excluding obj/ and bin/
 CHANGED_CS_FILES=$(git diff --name-only "$BASE_BRANCH".."$HEAD_BRANCH" | grep '\.cs$' | grep -vE '^(obj|bin)/' || true)
 
+if [ -z "$CHANGED_CS_FILES" ]; then
+  log_info "No changed .cs files to analyze. Exiting."
+  exit 0
+fi
+
 for file in $CHANGED_CS_FILES; do
+  if [ ! -f "$file" ]; then
+    log_error "File $file not found. Skipping."
+    continue
+  fi
+  log_info "Reviewing $file"
   echo "" >> pr-comment.txt
   echo "Reviewing **$file**:" >> pr-comment.txt
 
