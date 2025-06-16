@@ -1,18 +1,24 @@
 using System;
 
 // TODO: Add XML documentation
-public class SampleService
+public class sampleservice // not PascalCase
 {
-    private SampleRepository _repository; // Not injected via constructor
+    private SampleRepository sampleRepository; // not camelCase, not readonly
+    private int unusedField; // unused variable
 
-    public SampleService()
+    // TODO: Add constructor injection
+    public sampleservice()
     {
-        _repository = new SampleRepository(); // Direct instantiation, not DI
+        sampleRepository = new SampleRepository(); // direct instantiation
+        // string temp = "test"; // commented-out code
     }
 
-    public string GetData()
+    public string fetchData() // not PascalCase
     {
-        // No try-catch
-        return _repository.Fetch();
+        // TODO: Add error handling
+        return sampleRepository.fetch(); // method name not PascalCase
     }
+
+    // Extra blank line below
+
 }
