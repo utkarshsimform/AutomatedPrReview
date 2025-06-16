@@ -1,15 +1,11 @@
 using System;
 
 // TODO: Add XML documentation
-public class samplerepository // not PascalCase
+public class SampleRepository
 {
-    private string unusedField; // unused variable
-
-    public string fetch() // not PascalCase
+    public string Fetch()
     {
-        // TODO: Add error handling
-        // string temp = "test"; // commented-out code
+        // No try-catch
         return "data";
     }
-
 }

@@ -1,25 +1,18 @@
 using System;
 
 // TODO: Add XML documentation
-public class samplecontroller // not PascalCase
+public class SampleController
 {
-    private SampleService SampleService; // not camelCase, not readonly
-    private string UnusedField; // unused variable
+    private readonly SampleService _service;
 
-    // TODO: Add constructor injection
-    public samplecontroller()
+    public SampleController()
     {
-        SampleService = new SampleService(); // direct instantiation
-        // int temp = 5; // commented-out code
+        _service = new SampleService();
     }
 
-    public void getdata() // not PascalCase
+    public void Get()
     {
-        var result = SampleService.fetchData(); // method name not PascalCase
-        Console.WriteLine(result); // Console.WriteLine usage
-        // TODO: Add error handling
+        var data = _service.GetData();
+        Console.WriteLine(data);
     }
-
-    // Extra blank line below
-
 }
