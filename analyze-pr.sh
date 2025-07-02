@@ -51,6 +51,23 @@ if [ -z "$CHANGED_CS_FILES" ]; then
   exit 0
 fi
 
+# Detect duplicate class names across changed files
+
+declare -A class_files
+
+for file in $CHANGED_CS_FILES; do
+  grep -E '^\s*(public|internal|private|protected)?\s*class\s+[A-Za-z_][A-Za-z0-9_]*' "$file" | \
+  sed -E 's/^.*class\s+([A-Za-z_][A-Za-z0-9_]*).*/\1/' | while read -r cname; do
+    if [[ -n "$cname" ]]; then
+      if [[ -n "${class_files[$cname]}" ]]; then
+        echo "[WARNING] Duplicate class name '$cname' found in $file (already exists in ${class_files[$cname]}). Consider reusing or refactoring." >> pr-comment.txt
+      else
+        class_files[$cname]="$file"
+      fi
+    fi
+  done
+done
+
 for file in $CHANGED_CS_FILES; do
   if [ ! -f "$file" ]; then
     log_error "File $file not found. Skipping."
@@ -160,7 +177,6 @@ for file in $CHANGED_CS_FILES; do
   if grep -E 'private [A-Z][A-Za-z0-9_]* [a-zA-Z0-9_]+;' "$file" | grep -v readonly > /dev/null 2>&1; then
     echo "[WARNING] Private dependency field is not readonly (should be injected and readonly)." >> pr-comment.txt
   fi
-
 done
 
 echo -e "\n(Extend this script to parse pr-review-instructions.md and automate more checks.)" >> pr-comment.txt

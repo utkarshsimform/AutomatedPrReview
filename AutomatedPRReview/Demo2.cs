@@ -35,3 +35,26 @@ public class demo2 // Not PascalCase
     // Extra blank line below
 
 }
+
+/// <summary>
+/// Another well-formed demo class for PR review.
+/// </summary>
+public class Demo2
+{
+    /// <summary>
+    /// Returns the sum of two integers.
+    /// </summary>
+    public int Add(int a, int b)
+    {
+        return a + b;
+    }
+}
+
+// Duplicate class for testing
+public class DuplicateClass
+{
+    public void Bar()
+    {
+        Console.WriteLine("Demo2 DuplicateClass");
+    }
+}
