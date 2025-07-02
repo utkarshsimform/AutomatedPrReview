@@ -56,16 +56,15 @@ fi
 declare -A class_files
 
 for file in $CHANGED_CS_FILES; do
-  grep -E '^\s*(public|internal|private|protected)?\s*class\s+[A-Za-z_][A-Za-z0-9_]*' "$file" | \
-  sed -E 's/^.*class\s+([A-Za-z_][A-Za-z0-9_]*).*/\1/' | while read -r cname; do
+  while read -r cname; do
     if [[ -n "$cname" ]]; then
-      if [[ -n "${class_files[$cname]}" ]]; then
+      if [[ -n "${class_files[$cname]:-}" ]]; then
         echo "[WARNING] Duplicate class name '$cname' found in $file (already exists in ${class_files[$cname]}). Consider reusing or refactoring." >> pr-comment.txt
       else
         class_files[$cname]="$file"
       fi
     fi
-  done
+  done < <(grep -E '^\s*(public|internal|private|protected)?\s*class\s+[A-Za-z_][A-Za-z0-9_]*' "$file" | sed -E 's/^.*class\s+([A-Za-z_][A-Za-z0-9_]*).*/\1/')
 done
 
 for file in $CHANGED_CS_FILES; do
