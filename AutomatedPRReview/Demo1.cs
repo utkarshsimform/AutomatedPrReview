@@ -21,3 +21,12 @@ public class demo5
         }
     }
 }
+
+// Duplicate class for testing
+public class DuplicateClass
+{
+    public void Foo()
+    {
+        Console.WriteLine("Demo1 DuplicateClass");
+    }
+}
