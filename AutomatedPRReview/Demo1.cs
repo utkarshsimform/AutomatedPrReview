@@ -6,7 +6,7 @@ using System;
 public class demo5
 {
     /// <summary>
-    /// Prints a message safely.
+    /// Prints a message safely. Hello
     /// </summary>
     public void PrintMessage()
     {
